@@ -25,11 +25,25 @@ struct file_meta_block
 	uint64_t driver_info_block_address;
 	uint32_t root_grp_symtable_entry;
 
+}; 
+
+
+struct b_tree_node
+{
+	uint32_t signature;
+	uint8_t node_type;
+	uint8_t node_level;
+	uint16_t entries_used;
+	uint64_t left_sibling_addr;
+	uint64_t right_sibling_addr;
+
 };
 
 void parse_file_meta_block(struct file_meta_block fb)
 {
 	printf("============== [VERSION 0 SUPERBLK] ==================\n");
+	printf("sizeof block: %lu\n", sizeof(struct file_meta_block));
+	printf("======================================================\n");
 	printf("SIGNATURE:                     0x%016llx \n"
 			"VER SUPERBLK:                  0x%x \n"
 			"VER FILE FREE SPACE STORAGE:   0x%x \n"
